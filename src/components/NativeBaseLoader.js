@@ -1,7 +1,7 @@
 import * as Expo from 'expo';
 import React, { Component } from 'react';
 
-export default class NativeLoader extends Component {
+export default class NativeBaseLoader extends Component {
   state = {
     isReady: false,
   };

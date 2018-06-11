@@ -18,16 +18,20 @@ import {
   Thumbnail,
 } from 'native-base';
 
-const StopWatch = () => {
+const AnotherDay = () => {
   return (
     <Container>
       <Content>
-        <Text>StopWatch!</Text>
+        <Text>AnotherDay!</Text>
       </Content>
     </Container>
   );
 };
 
-StopWatch.propTypes = {};
+AnotherDay.hoursLength = 4;
 
-export default StopWatch;
+AnotherDay.description = 'This is the description of the day';
+
+AnotherDay.propTypes = {};
+
+export default AnotherDay;

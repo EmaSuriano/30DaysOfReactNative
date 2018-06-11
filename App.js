@@ -1,70 +1,41 @@
-import * as Expo from 'expo';
 import React from 'react';
-import {
-  Container,
-  Title,
-  Content,
-  Footer,
-  FooterTab,
-  Button,
-  Left,
-  Right,
-  Body,
-  Header,
-  Icon,
-  Text,
-  Card,
-  CardItem,
-  Thumbnail,
-} from 'native-base';
-import CardDay from './components/CardDay';
-import NativeLoader from './components/NativeLoader';
 import { createStackNavigator } from 'react-navigation';
-import StopWatch from './Days/StopWatch';
+import NativeBaseLoader from './src/components/NativeBaseLoader';
+import Home from './src/screens/Home';
+import About from './src/screens/About';
+import Days from './src/screens/Days';
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home screen',
-    headerTitleStyle: {
-      textAlign: 'center',
-      alignSelf: 'center',
-      display: 'flex',
-      flex: 1,
-    },
-    headerStyle: {
-      backgroundColor: 'white',
-    },
-  };
+const days = Days.reduce(
+  (acc, { screenName, Screen }) => ({
+    ...acc,
+    [screenName]: Screen,
+  }),
+  {},
+);
 
-  render() {
-    return (
-      <Container>
-        <Content>
-          <CardDay
-            timeSpent="2 hours"
-            title="StopWatch"
-            description="Sample description"
-          />
-        </Content>
-      </Container>
-    );
-  }
-}
+console.log(days);
 
 const RootStack = createStackNavigator(
   {
-    Home: { screen: HomeScreen },
-    StopWatch: { screen: StopWatch },
+    Home,
+    About,
+    ...days,
   },
   {
     initialRouteName: 'Home',
+    navigationOptions: {
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        flex: 1,
+      },
+    },
   },
 );
 
 const App = () => (
-  <NativeLoader>
+  <NativeBaseLoader>
     <RootStack />
-  </NativeLoader>
+  </NativeBaseLoader>
 );
 
 export default App;
